@@ -1,9 +1,20 @@
 // from data.js
 var tableData = data;
 
-// YOUR CODE HERE!
+var tbody = d3.select("tbody");
+
+data.forEach(function(ufoSighting) {
+  var row = tbody.append("tr");
+  
+  Object.entries(ufoSighting).forEach(function([key, value]) {
+  console.log(key, value);
+  
+  var cell = tbody.append("td");
+  });
+});
+  
 // Select the submit button
-var submit = d3.select("#submit");
+var submit = d3.select("#filter-btn");
 
 submit.on("click", function() {
 
@@ -17,8 +28,9 @@ submit.on("click", function() {
   var inputValue = inputElement.property("value");
 
   console.log(inputValue);
-  console.log(tableData);
 
+  loadData(tableData);
+  
   var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
 
   console.log(filteredData);
@@ -28,7 +40,9 @@ submit.on("click", function() {
         Object.entries(ufoSighting).forEach(([key, value]) => {
           var cell = row.append("td");
           cell.text(value);
+          loadData(filteredData);
         });
       });
   
   });
+
